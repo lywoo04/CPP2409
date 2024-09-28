@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+//234106 임연우
 
 void merge(int A[], int l, int m, int h)    {
     int i = l;
