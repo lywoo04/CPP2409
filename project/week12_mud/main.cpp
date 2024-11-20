@@ -57,6 +57,7 @@ int main() {
 			break;
 		}
 		else if (user_input == "infor") {
+			player.IncreaseHP(1);
 			cout << player << endl;
 		}
 		else if (user_input == "up" || user_input == "down" 
@@ -157,7 +158,6 @@ int checkMap(vector<vector<int>>& map, int user_x, int user_y, User& player) {
         case 1:
 			cout << "아이템을 주웠습니다" << endl;
 			player.IncreaseItemCnt();
-			player.IncreaseHP(1);
 			break;
 		case 2:
 			cout << "적을 만났습니다" << endl << "LP 2 감소" << endl;
