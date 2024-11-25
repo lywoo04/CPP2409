@@ -1,30 +1,55 @@
-#include <iostream>
+#include<iostream>
 using namespace std;
 
-class User{
-protected:
+class User {
+private:
     int hp;
-    int itemCnt;
-    int x,y;
+    int item;
+
 public:
-    User();
-    virtual void DecreaseHP(int dec_hp);
-    virtual void IncreaseHP(int inc_hp);
-    virtual int GetHP() const;
+    virtual ~User() {} 
+    virtual void DecreaseHP(int dec_hp) = 0; 
+    virtual void IncreaseHP(int inc_hp) = 0; 
+    virtual int GetHP() const = 0; 
+    virtual int ItemCnt() const = 0;
+    virtual void IncreaseItemCnt(int inc_item) = 0; 
+    virtual void DoAttack() const = 0; 
 
-    virtual void Move(int dx, int dy);
-    virtual int GetX() const { return x; }
-    virtual int GetY() const { return y; }
-
-    virtual void IncreaseItemCnt();
-    virtual int GetItemCnt();
-
-    friend ostream& operator<<(ostream& os, const User& player){ 
-        os << "현제 HP는 {" << player.hp << "} 이고, 먹은 아이템은 총 {" << player.itemCnt << "}개 입니다";
+    friend ostream& operator<<(ostream& os, const User& user) {
+        os << "현재 체력 : " << user.GetHP() << " , " << "획득 아이템 개수 : " << user.ItemCnt() << endl;
         return os;
     }
+};
 
-    void DoAttack();
+
+class Magician : public User {
+private:
+    int hp;
+    int item;
+
+public:
+    Magician() : hp(20), item(0) {} 
+    void DecreaseHP(int dec_hp) override;
+    void IncreaseHP(int inc_hp) override;
+    int GetHP() const override;
+    int ItemCnt() const override;
+    void IncreaseItemCnt(int inc_item) override;
+    void DoAttack() const override;
 
 };
 
+class Warrior : public User {
+private:
+    int hp;
+    int item;
+
+public:
+    Warrior() : hp(20), item(0) {}
+    void DecreaseHP(int dec_hp) override;
+    void IncreaseHP(int inc_hp) override;
+    int GetHP() const override;
+    int ItemCnt() const override;
+    void IncreaseItemCnt(int inc_item) override;
+    void DoAttack() const override;
+
+};
